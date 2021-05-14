@@ -1,0 +1,13 @@
+export const ADD_NAME = 'ADD_NAME';
+export const LOADING_NAME = 'LOADING_NAME';
+export const NAME_LIST_SUCESS = 'NAME_LIST_SUCESS';
+export const NAME_LIST_ERROR = 'NAME_LIST_ERROR';
+export const LOG_IN = 'LOG_IN';
+export const LOGIN_VALIDATED = 'LOGIN_VALIDATED';
+export const LOGIN_INVALIDATED = 'LOGIN_INVALIDATED';
+export const LOGOUT = 'LOGOUT';
+export const REGISTER = 'REGISTER';
+export const REGISTER_VALIDATED = 'REGISTER_VALIDATED';
+export const REGISTER_INVALIDATED = 'REGISTER_INVALIDATED';
+export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
