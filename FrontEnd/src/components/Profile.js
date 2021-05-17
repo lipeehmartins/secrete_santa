@@ -5,9 +5,9 @@ import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
 const Profile = () => {
-    const { user: currentUser } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.auth);
 
-    if (!currentUser) {
+    if (!user) {
         return <Redirect to="/login" />;
     }
 
@@ -15,22 +15,21 @@ const Profile = () => {
         <div className="container">
             <header className="jumbotron">
                 <h3>
-                    <strong>{currentUser.username}</strong> Profile
-        </h3>
+                    <strong>{user.first_name}</strong> Profile
+                </h3>
             </header>
             <p>
-                <strong>Token:</strong> {currentUser.token.substring(0, 20)} ...{" "}
-                {currentUser.token.substr(currentUser.token.length - 20)}
+                <strong>Token:</strong> {user.token}
             </p>
             <p>
-                <strong>Id:</strong> {currentUser.id}
+                <strong>User:</strong> {user.username}
             </p>
             <p>
-                <strong>Email:</strong> {currentUser.email}
+                <strong>Email:</strong> {user.email}
             </p>
             <ul>
-                {currentUser.roles &&
-                    currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
+                {/* {user.roles &&
+                    user.roles.map((role, index) => <li key={index}>{role}</li>)} */}
             </ul>
             <AddName />
             <NameList />

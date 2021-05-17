@@ -1,41 +1,20 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { register } from '../redux/secretApp/authActions';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-
-const vusername = (value) => {
-    if (value.length < 3 || value.length > 20) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                The username must be between 3 and 20 characters.
-            </div>
-        );
-    }
-};
-
-const vpassword = (value) => {
-    if (value.length < 6 || value.length > 40) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                The password must be between 6 and 40 characters.
-            </div>
-        );
-    }
-};
+import { useHistory } from 'react-router';
 
 const Register = () => {
-    const form = useRef();
-    const checkBtn = useRef();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [successful, setSuccessful] = useState(false);
-    const { message } = useSelector(state => state.messages);
+    const success = useSelector(state => state.auth.success);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const onChangeUsername = (e) => {
         const username = e.target.value;
@@ -66,22 +45,18 @@ const Register = () => {
         e.preventDefault();
 
         setSuccessful(false);
-        form.current.validateAll();
 
-        if (checkBtn.current.context._error.length === 0) {
-            dispatch(register(username, firstName, lastName, email, password))
-                .then(() => {
-                    setSuccessful(true);
-                })
-                .catch(() => {
-                    setSuccessful(false);
-                });
-        }
+        dispatch(register(username, firstName, lastName, email, password))
+           
     };
+
+    useEffect(() => {
+        if(success) history.push("/login")
+    },[success]);
 
     return (
         <div className="register-form">
-            <Form onSubmit={handleRegister} ref={form}>
+            <Form onSubmit={handleRegister}>
                 {!successful && (
                     <div>
                         <div className="form-group">
@@ -90,7 +65,7 @@ const Register = () => {
                                 type="text"
                                 className="form-control"
                                 name="username"
-                                required={vusername}
+                                required
                                 value={username}
                                 onChange={onChangeUsername}
                             />
@@ -134,7 +109,7 @@ const Register = () => {
                                 type="password"
                                 className="form-control"
                                 name="password"
-                                required={vpassword}
+                                required
                                 value={password}
                                 onChange={onChangePassword}
                             />
@@ -145,15 +120,7 @@ const Register = () => {
                     </div>
                 )}
 
-                {message && (
-                    <div className="form-group">
-                        <div className={successful ? "alert alert-success" : "alert alert-danger"} role="alert">
-                            {message}
-                        </div>
-                    </div>
-                )}
 
-                <CheckButton style={{ display: "none" }} ref={checkBtn} />
             </Form>
         </div>
     )

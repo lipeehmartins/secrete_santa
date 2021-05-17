@@ -8,11 +8,11 @@ export const getNameList = () => async dispatch => {
             type: LOADING_NAME
         });
 
-        const response = await axios.get(url=`http://127.0.0.1:8000/viewset/unpickedName/`)
+        axios.get(url=`http://127.0.0.1:8000/viewset/unpickedName/`)
 
         dispatch({
             type: NAME_LIST_SUCESS,
-            payload: response.data
+            payload: response.data.names
         })
     } catch (error) {
         dispatch({

@@ -1,36 +1,44 @@
-import { ADD_NAME, LOG_IN, NAME_LIST_SUCESS, NAME_LIST_ERROR, LOADING_NAME } from './secretAppType';
+import { ADD_NAME, ADD_NAME_ERROR, PICKED_NAME, PICKED_NAME_ERROR } from './secretAppType';
 import axios from 'axios';
 
-export const getNameList = () => async dispatch => {
-    try {
-        dispatch({
-            type: LOADING_NAME
-        });
 
-        const response = await axios.get(`http://127.0.0.1:8000/viewset/unpickedName/`)
+const API_URL = "http://127.0.0.1:8000/"
 
-        dispatch({
-            type: NAME_LIST_SUCESS,
-            payload: response.data
+export const addName = (names) => (dispatch) => {
+    return axios.post(API_URL + "viewset/unpickedName/", {
+        
+        names
+    })
+        .then((response) => {
+            localStorage.getItem("token")
+            if (response.data.token) {
+                dispatch({
+                    type: ADD_NAME,
+                    payload: response.data,
+                });
+            }
+        }).catch((error) => {
+            dispatch({
+                type: ADD_NAME_ERROR,
+            })
         })
-    } catch (error) {
-        dispatch({
-            type: NAME_LIST_ERROR,
-        })
-    }
 };
-let nextNameId = 0;
-export const addName = (name) => {
-    return {
-        type: ADD_NAME,
-        id: nextNameId++,
+
+
+export const pickedName = (name) => (dispatch) => {
+    axios.post(API_URL + "viewset/unpickedName/", {
         name
-    };
+    })
+        .then((response) => {
+            if (response.state.name) {
+                dispatch({
+                    type: PICKED_NAME,
+                    payload: response.data,
+                });
+            }
+        }).catch((error) => {
+            dispatch({
+                type: PICKED_NAME_ERROR,
+            })
+        })
 };
-
-export const log_in = payload => {
-    return {
-        type: LOG_IN,
-        payload,
-    }
-}

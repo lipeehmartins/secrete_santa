@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { connect, useDispatch, useSelector, } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import {  useHistory } from 'react-router-dom';
 import { login } from '../redux/secretApp/authActions';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 
 const Login = (props) => {
-    // let history = useHistory();
+    let history = useHistory();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -39,8 +39,8 @@ const Login = (props) => {
 
     useEffect(() => {
         if (isLogged) {
-            localStorage.setItem("token", user)
-            // return history.push("/profile")
+            localStorage.setItem("token", user.token);
+            return history.push("/profile")
         }
     }, [isLogged]);
 

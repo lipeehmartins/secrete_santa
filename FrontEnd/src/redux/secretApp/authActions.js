@@ -3,20 +3,19 @@ import axios from 'axios';
 
 const API_URL = "http://127.0.0.1:8000/"
 
-export const register = (username, firstName, lastName, email, password) => (dispatch) => {
+export const register = (username, first_name, last_name, email, password) => (dispatch) => {
     axios.post(API_URL + "viewset/user/", {
         username,
-        firstName,
-        lastName,
+        first_name,
+        last_name,
         email,
         password
     })
         .then((response) => {
-            if (response.success) {
-                dispatch({
-                    type: REGISTER_VALIDATED,
-                });
-            }
+            dispatch({
+                type: REGISTER_VALIDATED,
+            });
+
         }).catch((error) => {
             dispatch({
                 type: REGISTER_INVALIDATED,
@@ -32,10 +31,9 @@ export const login = (username, password) => (dispatch) => {
     })
         .then((response) => {
             if (response.data.token) {
-                localStorage.setItem("user", response.data.token);
                 dispatch({
                     type: LOGIN_VALIDATED,
-                    payload: response.data.token,
+                    payload: response.data,
                 });
             }
         }).catch((error) => {
@@ -46,7 +44,7 @@ export const login = (username, password) => (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     dispatch({
         type: LOGOUT,
     });

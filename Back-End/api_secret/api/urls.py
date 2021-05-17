@@ -1,7 +1,7 @@
 from django.urls import path, include
-from .views import UserViewSet, PickedNamesViewSet, UnpickedNamesViewSet
+from .views import UserViewSet, PickedNamesViewSet, UnpickedNamesViewSet, CustomAuthToken
 from rest_framework.routers import DefaultRouter
-from rest_framework.authtoken import views
+# from rest_framework.authtoken import views
 
 routers = DefaultRouter()
 routers.register('user', UserViewSet, basename='user')
@@ -14,5 +14,5 @@ urlpatterns = [
     path('users/', UserViewSet),
     path('pickedNames/', PickedNamesViewSet),
     path('unpickedNames/', UnpickedNamesViewSet),
-    path('login/', views.obtain_auth_token),
+    path('login/', CustomAuthToken.as_view()),
 ]
