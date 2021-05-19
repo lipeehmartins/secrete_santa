@@ -4,8 +4,6 @@ import { addName } from '../redux/secretApp/secretAppAction';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 
-const user = localStorage.getItem("token") 
-
 let AddName = ({ dispatch }) => {
     const [names, setNames] = useState("");
 
@@ -27,13 +25,13 @@ let AddName = ({ dispatch }) => {
             <Form onSubmit={handlAddName}>
                 <div className="fomr-group">
                     <div className="input">
-                        <Input 
-                        type="text"
-                        className="form-control"
-                        name="username"
-                        required
-                        value={names}
-                        onChange={onChangeNames} />
+                        <Input
+                            type="text"
+                            className="form-control"
+                            name="username"
+                            required
+                            value={names}
+                            onChange={onChangeNames} />
                     </div>
                 </div>
                 <div className="addName-btn">

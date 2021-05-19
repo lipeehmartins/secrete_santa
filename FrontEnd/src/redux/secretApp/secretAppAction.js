@@ -3,18 +3,17 @@ import axios from 'axios';
 
 
 const API_URL = "http://127.0.0.1:8000/"
+const config =  localStorage.getItem('token');
 
 export const addName = (names) => (dispatch) => {
-    return axios.post(API_URL + "viewset/unpickedName/", {
-        
+    return axios.post(API_URL + "viewset/unpickedName/", config, {
         names
     })
         .then((response) => {
-            localStorage.getItem("token")
-            if (response.data.token) {
+            if (response.data.names) {
                 dispatch({
                     type: ADD_NAME,
-                    payload: response.data,
+                    payload: response.data.names,
                 });
             }
         }).catch((error) => {
@@ -23,7 +22,6 @@ export const addName = (names) => (dispatch) => {
             })
         })
 };
-
 
 export const pickedName = (name) => (dispatch) => {
     axios.post(API_URL + "viewset/unpickedName/", {

@@ -7,8 +7,7 @@ const NameList = ({people}) => {
     return (
         < div >
             <ul>
-            {people.length > 0 && people.map(person => 
-            <Name names={person.names}/>)}
+            <Name />
             </ul>
         </div >
     )

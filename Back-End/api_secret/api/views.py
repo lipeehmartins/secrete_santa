@@ -93,8 +93,8 @@ class UnpickedNamesViewSet(viewsets.ViewSet):
 
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
     def retrieve(self, request, pk=None):
         queryset = UnpickedNames.objects.all()
@@ -108,7 +108,7 @@ class UnpickedNamesViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors)
 
 
 class CustomAuthToken(ObtainAuthToken):
@@ -127,25 +127,25 @@ class CustomAuthToken(ObtainAuthToken):
         })
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+# class UserViewSet(viewsets.ModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
 
 
-class PickedNamesViewSet(viewsets.ModelViewSet):
-    queryset = PickedNames.objects.all()
-    serializer_class = PickedNamesSerializer
-    authentications_classes = [SessionAuthentication, BasicAuthentication]
-    #authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+# class PickedNamesViewSet(viewsets.ModelViewSet):
+#     queryset = PickedNames.objects.all()
+#     serializer_class = PickedNamesSerializer
+#     authentications_classes = [SessionAuthentication, BasicAuthentication]
+#     authentication_classes = [TokenAuthentication]
+#     permission_classes = [IsAuthenticated]
 
 
-class UnpickedNamesViewSet(viewsets.ModelViewSet):
-    queryset = UnpickedNames.objects.all()
-    serializer_class = UnpickedNamesSerializer
-    authentications_classes = [SessionAuthentication, BasicAuthentication]
-    #authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+# class UnpickedNamesViewSet(viewsets.ModelViewSet):
+#     queryset = UnpickedNames.objects.all()
+#     serializer_class = UnpickedNamesSerializer
+#     authentications_classes = [SessionAuthentication, BasicAuthentication]
+#     authentication_classes = [TokenAuthentication]
+#     permission_classes = [IsAuthenticated]
 
 # Creation of names using Postman
 # test picking names using Postman
