@@ -3,6 +3,7 @@ import AddName from '../components/AddName';
 import NameList from '../components/NameList';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import Navbar from "./Navbar";
 
 const Profile = () => {
     const { user } = useSelector((state) => state.auth);
@@ -12,26 +13,21 @@ const Profile = () => {
     }
 
     return (
+        
         <div className="container">
             <header className="jumbotron">
+                <Navbar/>
                 <h3>
-                    <strong>{user.first_name}</strong> Profile
+                    <strong>Profile:</strong> {user.first_name}
                 </h3>
             </header>
-            <p>
-                <strong>Token:</strong> {user.token}
-            </p>
             <p>
                 <strong>User:</strong> {user.username}
             </p>
             <p>
                 <strong>Email:</strong> {user.email}
             </p>
-            <ul>
-                {/* {user.roles &&
-                    user.roles.map((role, index) => <li key={index}>{role}</li>)} */}
-            </ul>
-            <AddName />
+            <AddName /><br/>
             <NameList />
         </div>
 

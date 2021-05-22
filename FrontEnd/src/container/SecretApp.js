@@ -10,7 +10,7 @@ const SecretApp = () => {
     return (
         <Router>
                 <Switch>
-                    <Route exact path="/home">
+                    <Route exact path="/">
                         <Home />
                     </Route>
                 </Switch>

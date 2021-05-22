@@ -7,13 +7,13 @@ const config =  localStorage.getItem('token');
 
 export const addName = (names) => (dispatch) => {
     return axios.post(API_URL + "viewset/unpickedName/", config, {
-        names
+        names: names
     })
         .then((response) => {
             if (response.data.names) {
                 dispatch({
                     type: ADD_NAME,
-                    payload: response.data.names,
+                    payload: response.data
                 });
             }
         }).catch((error) => {

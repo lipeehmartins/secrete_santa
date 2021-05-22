@@ -1,13 +1,13 @@
 import { ADD_NAME } from './secretAppType';
-import name from './name';
 
-const names = (state = [], action) => {
+
+const initialState = { names: "" }
+const names = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_NAME:
-            return [
-                ...state,
-                name(undefined, action)
-            ];
+        case ADD_NAME: {
+            const { names } = action.payload
+            return { names };
+        }
         default:
             return state;
     };

@@ -35,7 +35,7 @@ let AddName = ({ dispatch }) => {
                     </div>
                 </div>
                 <div className="addName-btn">
-                    <button className="btn btn-primary btn-block">
+                    <button className="btn btn-danger btn-block">
                         Add Name
                     </button>
                 </div>

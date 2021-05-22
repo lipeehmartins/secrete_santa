@@ -115,7 +115,7 @@ const Register = () => {
                             />
                         </div>
                         <div className="sigup-btn">
-                            <button className="btn btn-primary btn-block" >sign up</button>
+                            <button className="btn btn-danger btn-block" >sign up</button>
                         </div>
                     </div>
                 )}

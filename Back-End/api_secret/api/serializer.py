@@ -26,9 +26,11 @@ class PickedNamesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PickedNames
         fields = ['id', 'name']
+        read_only_fields = ('id',)
 
 
 class UnpickedNamesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = UnpickedNames
         fields = ['id', 'names']
+        read_only_fields = ('id',)
