@@ -60,8 +60,8 @@ class PickedNamesViewSet(viewsets.ViewSet):
 
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
     def retrieve(self, request, pk=None):
         queryset = PickedNames.objects.all()
@@ -75,7 +75,7 @@ class PickedNamesViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors)
 
 
 class UnpickedNamesViewSet(viewsets.ViewSet):

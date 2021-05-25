@@ -3,7 +3,7 @@ import Name from './Name'
 import { connect } from 'react-redux';
 
 
-const NameList = ({people}) => {
+const NameList = () => {
     return (
         < div >
             <ul>
@@ -13,9 +13,5 @@ const NameList = ({people}) => {
     )
 };
 
-const mapStateToProps = (state) => ({
-    people: state.names
-})
 
-
-export default connect(mapStateToProps, null)(NameList);
+export default (NameList);

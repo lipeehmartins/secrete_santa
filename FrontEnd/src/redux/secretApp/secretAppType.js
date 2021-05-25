@@ -14,3 +14,4 @@ export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
 export const PICKED_NAME = 'PICKED_NAME';
 export const PICKED_NAME_ERROR = 'PICKED_NAME_ERROR';
+export const REMOVED_NAME = 'REMOVED_NAME';

@@ -4,7 +4,7 @@ import { addName } from '../redux/secretApp/secretAppAction';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 
-let AddName = ({ dispatch }) => {
+const AddName = ({ dispatch }) => {
     const [names, setNames] = useState("");
 
     const onChangeNames = (e) => {
@@ -12,17 +12,18 @@ let AddName = ({ dispatch }) => {
         setNames(names);
     };
 
-    const handlAddName = (e) => {
+    const handleAddName = (e) => {
         e.preventDefault();
         if (names.trim()) {
             dispatch(addName(names))
         }
     };
 
+
     return (
         <div className="AddName">
             <h1>Secret Santa</h1>
-            <Form onSubmit={handlAddName}>
+            <Form onSubmit={handleAddName}>
                 <div className="fomr-group">
                     <div className="input">
                         <Input
@@ -36,7 +37,7 @@ let AddName = ({ dispatch }) => {
                 </div>
                 <div className="addName-btn">
                     <button className="btn btn-danger btn-block">
-                        Add Name
+                        Add name
                     </button>
                 </div>
 

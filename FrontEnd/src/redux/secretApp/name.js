@@ -1,8 +1,8 @@
 import { ADD_NAME } from './secretAppType';
 
 
-export const name = (names) => ({
+export const name = {
         type: ADD_NAME,
-        payload: {names},
-});
+        payload: names,
+};
 

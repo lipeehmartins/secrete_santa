@@ -4,6 +4,7 @@ import NameList from '../components/NameList';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import Navbar from "./Navbar";
+import PickedName from "./PickedName";
 
 const Profile = () => {
     const { user } = useSelector((state) => state.auth);
@@ -28,7 +29,9 @@ const Profile = () => {
                 <strong>Email:</strong> {user.email}
             </p>
             <AddName /><br/>
-            <NameList />
+            <NameList /><br/>
+            <PickedName />
+
         </div>
 
     );

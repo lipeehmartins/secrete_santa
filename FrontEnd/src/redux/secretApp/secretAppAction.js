@@ -6,8 +6,8 @@ const API_URL = "http://127.0.0.1:8000/"
 const config =  localStorage.getItem('token');
 
 export const addName = (names) => (dispatch) => {
-    return axios.post(API_URL + "viewset/unpickedName/", config, {
-        names: names
+    return axios.post(API_URL + "viewset/unpickedName/", {
+        names
     })
         .then((response) => {
             if (response.data.names) {
@@ -24,7 +24,7 @@ export const addName = (names) => (dispatch) => {
 };
 
 export const pickedName = (name) => (dispatch) => {
-    axios.post(API_URL + "viewset/unpickedName/", {
+    axios.post(API_URL + "viewset/pickedName/",{
         name
     })
         .then((response) => {
