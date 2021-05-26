@@ -4,9 +4,10 @@ import { addName } from '../redux/secretApp/secretAppAction';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 
+
 const AddName = ({ dispatch }) => {
     const [names, setNames] = useState("");
-
+    
     const onChangeNames = (e) => {
         const names = e.target.value;
         setNames(names);

@@ -80,7 +80,7 @@ class PickedNamesViewSet(viewsets.ViewSet):
 
 class UnpickedNamesViewSet(viewsets.ViewSet):
 
-    def list(self, request):
+    def list(self, request,):
         unpickedNames = UnpickedNames.objects.all()
         serializer = UnpickedNamesSerializer(unpickedNames, many=True)
         return Response(serializer.data)
